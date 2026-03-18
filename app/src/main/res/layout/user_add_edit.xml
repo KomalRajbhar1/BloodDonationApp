@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/person_etl_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="User ID"
+        app:errorEnabled="true"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/person_et_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="User ID"
+            android:inputType="number"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/person_etl_firstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="User First Name"
+        app:errorEnabled="true"
+        android:layout_below="@id/person_etl_id"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/person_et_firstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="User First Name"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/person_etl_lastName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="User Last Name"
+        app:errorEnabled="true"
+        android:layout_below="@id/person_etl_firstName"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/person_et_lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="User Last Name"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/person_etl_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="User Address"
+        app:errorEnabled="true"
+        android:layout_below="@id/person_etl_lastName"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/person_et_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="User Address"
+            android:inputType="textMultiLine"
+            android:height="50dp"
+            android:maxLines="4"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</RelativeLayout>

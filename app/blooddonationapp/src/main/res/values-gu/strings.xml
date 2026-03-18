@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><string name="app_name">બ્લડ ડોનેશન એપ</string>
+    <string name="settings">સેટિંગ્સ</string>
+    <string name="add_donor">ડોનર ઉમેરો</string>
+    <string name="view_donors">ડોનર્સ જુઓ</string>
+</resources>

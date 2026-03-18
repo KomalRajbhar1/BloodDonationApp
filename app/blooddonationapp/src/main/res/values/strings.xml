@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BloodLink</string>
+    <string name="settings">Settings</string>
+    <string name="add_donor">Add Donor</string>
+    <string name="view_donors">View Donors</string>
+</resources>

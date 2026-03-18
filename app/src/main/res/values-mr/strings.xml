@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="app_name" translation="false">माझे अ‍ॅप्लिकेशन</string>
+        <string name="enterUsername">वापरकर्तानाव टाका</string>
+        <string name="enterPassword">पासवर्ड टाका</string>
+        <string name="enterEmail">ईमेल टाका</string>
+        <string name="enterContact">संपर्क टाका</string>
+        <string name="tnc">मी अटी आणि शर्तींशी सहमत आहे</string>
+        <string name="forgotPassword">पासवर्ड विसरलात का?</string>
+        <string name="languageSelection">कृपया भाषा निवडा</string>
+        <string name="logout">लॉगआउट</string>
+
+        <array name="status_array">
+            <item>सक्रिय</item>
+            <item>असक्रिय</item>
+        </array>
+</resources>

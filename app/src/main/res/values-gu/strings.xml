@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translation="false">મારી એપ્લિકેશન</string>
+    <string name="enterUsername">યૂઝરનેમ દાખલ કરો</string>
+    <string name="enterPassword">પાસવર્ડ દાખલ કરો</string>
+    <string name="enterEmail">ઈમેલ દાખલ કરો</string>
+    <string name="enterContact">કોન્ટેક્ટ દાખલ કરો</string>
+    <string name="tnc">હું શરતો અને નિયમોને સ્વીકારું છું</string>
+    <string name="forgotPassword">પાસવર્ડ ભૂલી ગયા છો</string>
+    <string name="languageSelection">કૃપા કરીને ભાષા પસંદ કરો</string>
+    <string name="logout">લૉગઆઉટ</string>
+
+    <array name="status_array">
+        <item>સક્રિય</item>
+        <item>નિષ્ક્રિય</item>
+    </array>
+</resources>
