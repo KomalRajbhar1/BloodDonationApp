@@ -242,4 +242,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return list;
     }
+    // ✅ Request Blood Group Count
+    public int getRequestBloodGroupCount(String bloodGroup){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM requests WHERE blood_group = ?",
+                new String[]{bloodGroup}
+        );
+
+        int count = cursor.getCount();
+        cursor.close();
+
+        return count;
+    }
 }

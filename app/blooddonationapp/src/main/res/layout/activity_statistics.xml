@@ -8,31 +8,52 @@
         android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <!-- TITLE -->
         <TextView
             android:text="Donor Statistics"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- TOTAL SECTION -->
+        <TextView
+            android:text="Overview"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <TextView
             android:id="@+id/tvTotal"
             android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <TextView
             android:id="@+id/tvTotalRequests"
             android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:text="Blood Group Distribution"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/tvAplus"
@@ -101,6 +122,76 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textColorHint="@color/black"/>
+
+        <TextView
+            android:text="Request Blood Distribution"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvReqAplus"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvReqAminus"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvReqBplus"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvReqBminus"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvReqOplus"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvReqOminus"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvReqABplus"
+            android:textSize="18sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvReqABminus"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </ScrollView>

@@ -92,32 +92,25 @@ public class SettingsActivity extends AppCompatActivity {
             languageSpinner.setSelection(position);
         }
 
-        // Load dark mode setting
         boolean darkMode = sharedPreferences.getBoolean("darkMode", false);
         darkModeSwitch.setChecked(darkMode);
 
-        if(darkMode){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
+        AppCompatDelegate.setDefaultNightMode(
+                darkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
+        );
 
-        darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
+        darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("darkMode", isChecked);
-                editor.apply();
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("darkMode", isChecked);
+            editor.apply();
 
-                if(isChecked){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                else{
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
-            }
+            AppCompatDelegate.setDefaultNightMode(
+                    isChecked ? AppCompatDelegate.MODE_NIGHT_YES
+                            : AppCompatDelegate.MODE_NIGHT_NO
+            );
         });
     }
-
     private int getPositionOfLanguage(String selectedCode) {
 
         for(int i = 0; i < codes.length; i++){
@@ -143,19 +136,13 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void setLocale(String code){
 
-        Locale locale = new Locale(code);
-        Locale.setDefault(locale);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("language", code);
+        editor.apply();
 
-        Configuration config = new Configuration();
-        config.setLocale(locale);
-
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
-        // Restart app to apply language
         Intent intent = new Intent(SettingsActivity.this, DashboardActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
     public boolean onSupportNavigateUp(){
         finish();

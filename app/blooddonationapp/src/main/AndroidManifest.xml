@@ -3,11 +3,13 @@
     package="com.example.blooddonationapp">
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        android:configChanges="locale|layoutDirection">
         <activity
             android:name=".RequestListActivity"
             android:exported="false" />

@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.blooddonationapp.DonorProfileActivity;
 import com.example.blooddonationapp.R;
-import com.example.blooddonationapp.UpdateActivity;
 import com.example.blooddonationapp.Database.DatabaseHelper;
 import com.example.blooddonationapp.Model.Person;
 
@@ -29,12 +28,24 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
     private List<Person> donorList;
     private List<Person> donorListFull;
     private DatabaseHelper db;
+    private boolean isRequest;   // 🔥 NEW FLAG
 
+    // 🔥 CONSTRUCTOR FOR DONOR LIST
     public PersonAdapter(Context context, List<Person> donorList) {
         this.context = context;
         this.donorList = donorList;
         this.donorListFull = new ArrayList<>(donorList);
-        db = new DatabaseHelper(context);
+        this.db = new DatabaseHelper(context);
+        this.isRequest = false; // normal donors
+    }
+
+    // 🔥 CONSTRUCTOR FOR REQUEST LIST
+    public PersonAdapter(Context context, List<Person> donorList, boolean isRequest) {
+        this.context = context;
+        this.donorList = donorList;
+        this.donorListFull = new ArrayList<>(donorList);
+        this.db = new DatabaseHelper(context);
+        this.isRequest = isRequest;
     }
 
     @NonNull
@@ -53,37 +64,40 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
         holder.tvBlood.setText("Blood Group: " + person.getBloodGroup());
         holder.tvPhone.setText("Phone: " + person.getPhone());
 
-        // Click → Update
-        holder.itemView.setOnClickListener(v -> {
+        // ✅ CLICK ONLY FOR DONORS
+        if (!isRequest) {
+            holder.itemView.setOnClickListener(v -> {
 
-            Intent intent = new Intent(context, DonorProfileActivity.class);
+                Intent intent = new Intent(context, DonorProfileActivity.class);
 
-            intent.putExtra("id", person.getId());
-            intent.putExtra("name", person.getName());
-            intent.putExtra("blood", person.getBloodGroup());
-            intent.putExtra("phone", person.getPhone());
-            intent.putExtra("location", person.getArea());
+                intent.putExtra("id", person.getId());
+                intent.putExtra("name", person.getName());
+                intent.putExtra("blood", person.getBloodGroup());
+                intent.putExtra("phone", person.getPhone());
+                intent.putExtra("location", person.getArea());
 
-            context.startActivity(intent);
+                context.startActivity(intent);
+            });
+        }
 
-        });
-
-        // Long Click → Delete
-        holder.itemView.setOnLongClickListener(v -> {
-            new AlertDialog.Builder(context)
-                    .setTitle("Delete Donor")
-                    .setMessage("Are you sure you want to delete this donor?")
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                        db.deleteDonor(person.getId());
-                        Toast.makeText(context, "Donor Deleted", Toast.LENGTH_SHORT).show();
-                        donorList.remove(position);
-                        donorListFull.remove(person);
-                        notifyItemRemoved(position);
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
-            return true;
-        });
+        // ✅ DELETE ONLY FOR DONORS
+        if (!isRequest) {
+            holder.itemView.setOnLongClickListener(v -> {
+                new AlertDialog.Builder(context)
+                        .setTitle("Delete Donor")
+                        .setMessage("Are you sure you want to delete this donor?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            db.deleteDonor(person.getId());
+                            Toast.makeText(context, "Donor Deleted", Toast.LENGTH_SHORT).show();
+                            donorList.remove(position);
+                            donorListFull.remove(person);
+                            notifyItemRemoved(position);
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                return true;
+            });
+        }
     }
 
     @Override
@@ -104,7 +118,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
         }
     }
 
-    // SEARCH FILTER
+    // 🔍 SEARCH FILTER
     @Override
     public Filter getFilter() {
         return donorFilter;
@@ -136,21 +150,23 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             donorList.clear();
-            donorList.addAll((List) results.values);
+            donorList.addAll((List<Person>) results.values);
             notifyDataSetChanged();
         }
     };
+
+    // 🔄 UPDATE LIST
     public void updateList(List<Person> newList){
         donorList.clear();
         donorList.addAll(newList);
 
-        donorListFull.clear(); // important for search
+        donorListFull.clear();
         donorListFull.addAll(newList);
 
         notifyDataSetChanged();
     }
-    // ADD THIS METHOD INSIDE CLASS
 
+    // 🎯 FILTER BY BLOOD
     public void filterByBlood(String bloodGroup) {
         List<Person> filteredList = new ArrayList<>();
 

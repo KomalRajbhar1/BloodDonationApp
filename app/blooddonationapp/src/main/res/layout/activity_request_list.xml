@@ -15,18 +15,11 @@
         android:textStyle="bold"
         android:layout_marginBottom="10dp"/>
 
-    <!-- Optional: Search (future use) -->
-    <com.google.android.material.textfield.TextInputLayout
+    <Spinner
+        android:id="@+id/spSearchBlood"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search blood group">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etSearchRequest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_marginBottom="10dp"/>
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView

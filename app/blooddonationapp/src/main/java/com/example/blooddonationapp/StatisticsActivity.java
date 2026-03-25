@@ -11,7 +11,12 @@ import com.example.blooddonationapp.Database.DatabaseHelper;
 public class StatisticsActivity extends AppCompatActivity {
 
     TextView total, totalRequests;
+
+    // Donor stats
     TextView aplus, aminus, bplus, bminus, oplus, ominus, abplus, abminus;
+
+    // Request stats
+    TextView reqAplus, reqAminus, reqBplus, reqBminus, reqOplus, reqOminus, reqABplus, reqABminus;
 
     DatabaseHelper db;
 
@@ -26,44 +31,58 @@ public class StatisticsActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Statistics");
         }
 
-        // ✅ Initialize views
+        db = new DatabaseHelper(this);
+
+        // ✅ Top stats
         total = findViewById(R.id.tvTotal);
         totalRequests = findViewById(R.id.tvTotalRequests);
 
+        total.setText("Total Donors: " + db.getTotalDonors());
+        totalRequests.setText("Total Requests: " + db.getTotalRequests());
+
+        // ✅ Donor distribution
         aplus = findViewById(R.id.tvAplus);
         aminus = findViewById(R.id.tvAminus);
-
         bplus = findViewById(R.id.tvBplus);
         bminus = findViewById(R.id.tvBminus);
-
         oplus = findViewById(R.id.tvOplus);
         ominus = findViewById(R.id.tvOminus);
-
         abplus = findViewById(R.id.tvABplus);
         abminus = findViewById(R.id.tvABminus);
 
-        db = new DatabaseHelper(this);
+        aplus.setText("A+ Donors: " + db.getBloodGroupCount("A+"));
+        aminus.setText("A- Donors: " + db.getBloodGroupCount("A-"));
 
-        // ✅ Total donors
-        int totalDonors = db.getTotalDonors();
-        total.setText("Total Donors: " + totalDonors);
+        bplus.setText("B+ Donors: " + db.getBloodGroupCount("B+"));
+        bminus.setText("B- Donors: " + db.getBloodGroupCount("B-"));
 
-        // ✅ Total requests (make sure method exists)
-        int requests = db.getTotalRequests();
-        totalRequests.setText("Total Requests: " + requests);
+        oplus.setText("O+ Donors: " + db.getBloodGroupCount("O+"));
+        ominus.setText("O- Donors: " + db.getBloodGroupCount("O-"));
 
-        // ✅ Blood group counts (ALL types)
-        aplus.setText("A+ : " + db.getBloodGroupCount("A+"));
-        aminus.setText("A- : " + db.getBloodGroupCount("A-"));
+        abplus.setText("AB+ Donors: " + db.getBloodGroupCount("AB+"));
+        abminus.setText("AB- Donors: " + db.getBloodGroupCount("AB-"));
 
-        bplus.setText("B+ : " + db.getBloodGroupCount("B+"));
-        bminus.setText("B- : " + db.getBloodGroupCount("B-"));
+        // ✅ Request distribution
+        reqAplus = findViewById(R.id.tvReqAplus);
+        reqAminus = findViewById(R.id.tvReqAminus);
+        reqBplus = findViewById(R.id.tvReqBplus);
+        reqBminus = findViewById(R.id.tvReqBminus);
+        reqOplus = findViewById(R.id.tvReqOplus);
+        reqOminus = findViewById(R.id.tvReqOminus);
+        reqABplus = findViewById(R.id.tvReqABplus);
+        reqABminus = findViewById(R.id.tvReqABminus);
 
-        oplus.setText("O+ : " + db.getBloodGroupCount("O+"));
-        ominus.setText("O- : " + db.getBloodGroupCount("O-"));
+        reqAplus.setText("A+ Requests: " + db.getRequestBloodGroupCount("A+"));
+        reqAminus.setText("A- Requests: " + db.getRequestBloodGroupCount("A-"));
 
-        abplus.setText("AB+ : " + db.getBloodGroupCount("AB+"));
-        abminus.setText("AB- : " + db.getBloodGroupCount("AB-"));
+        reqBplus.setText("B+ Requests: " + db.getRequestBloodGroupCount("B+"));
+        reqBminus.setText("B- Requests: " + db.getRequestBloodGroupCount("B-"));
+
+        reqOplus.setText("O+ Requests: " + db.getRequestBloodGroupCount("O+"));
+        reqOminus.setText("O- Requests: " + db.getRequestBloodGroupCount("O-"));
+
+        reqABplus.setText("AB+ Requests: " + db.getRequestBloodGroupCount("AB+"));
+        reqABminus.setText("AB- Requests: " + db.getRequestBloodGroupCount("AB-"));
     }
 
     @Override

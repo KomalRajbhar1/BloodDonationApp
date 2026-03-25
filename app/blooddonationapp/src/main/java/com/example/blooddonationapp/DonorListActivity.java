@@ -1,7 +1,6 @@
 package com.example.blooddonationapp;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -23,17 +22,10 @@ public class DonorListActivity extends AppCompatActivity {
     DatabaseHelper db;
     Spinner spSearchBlood;
 
-    String[] bloodGroups = {"Search Blood Group", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor_list);
-
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Donor List");
-        }
 
         recyclerView = findViewById(R.id.recyclerView);
         spSearchBlood = findViewById(R.id.spSearchBlood);
@@ -45,28 +37,38 @@ public class DonorListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        // ✅ Spinner setup
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
+        // ✅ UPDATED Spinner Data (Added "All")
+        String[] bloodGroups = {
+                "Search Blood Group",
+                "All",
+                "A+", "A-", "B+", "B-",
+                "O+", "O-", "AB+", "AB-"
+        };
+
+        ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_dropdown_item,
                 bloodGroups
         );
 
-        spSearchBlood.setAdapter(spinnerAdapter);
+        spSearchBlood.setAdapter(adapterSpinner);
 
-        // ✅ Spinner filter logic
+        // 🔍 Filter Logic
         spSearchBlood.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
 
-                String selected = parent.getItemAtPosition(position).toString();
+                String selected = bloodGroups[position];
 
-                if (position == 0) {
+                if (position == 0 || selected.equals("All")) {
+                    // Show all donors
                     adapter.updateList(db.getAllDonors());
                 } else {
+                    // Filter specific blood group
                     adapter.filterByBlood(selected);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -75,13 +77,6 @@ public class DonorListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        List<Person> donorList = db.getAllDonors();
-        adapter.updateList(donorList);
-    }
-
-    public boolean onSupportNavigateUp(){
-        finish();
-        return true;
+        adapter.updateList(db.getAllDonors());
     }
 }
